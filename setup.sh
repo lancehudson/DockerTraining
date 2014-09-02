@@ -6,6 +6,7 @@ apt-get install openssh-server git
 
 # Install Docker
 curl -sSL https://get.docker.io/ubuntu/ | sh
+adduser user docker
 
 # Build Docker Images
 
