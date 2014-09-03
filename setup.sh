@@ -9,6 +9,8 @@ curl -sSL https://get.docker.io/ubuntu/ | sh
 adduser user docker
 
 # Build Docker Images
+docker build -t apt-cacher-ng AptCacher
+docker build -t npm-lazy NPMLazy
 
 
 # Install Apt-Cacher-ng
