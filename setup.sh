@@ -26,19 +26,41 @@ cp Files/issue-standard /etc/issue-standard
 cp Files/rc.local /etc/rc.local
 chmod +x /etc/rc.local
 
-# Build AptCacher Images
+# Build AptCacher Image
 docker build -t apt-cacher-ng AptCacher
 
 # Install Apt-Cacher-ng - 172.17.42.1:3142
 echo 'Acquire::http::Proxy "http://172.17.42.1:3142";' >> /etc/apt/apt.conf.d/01proxy
 docker run -d -p 3142:3142 --name apt-cacher-ng-run apt-cacher-ng
 
-# Build Docker Images
+# Update base
+apt-get upgrade
+
+# Pull down submodules
+git submodule init
+
+# Build NPM Lazy Image
 docker build -t npm-lazy NPMLazy
 
 # Install NPM Lazy
+docker run -d -p 8080:8080 --name npm-lazy-run npm-lazy
+
+# Build Gitlab
+docker build -t gitlab Gitlab
 
 # Install Gitlab
+docker run -d --name gitlab-run -p 10022:22 -p 10080:80 -e 'GITLAB_PORT=10080' -e 'GITLAB_SSH_PORT=10022' gitlab
 
-# Install Docker-Repository
+# Clone required github repositories
+
+# Build Registry
+docker build -t registry Registry
+
+# Install Registry
+docker run -d -p 5000:5000 --name registry-run registry
+
+# Build Example Images
+docker build -t helloworld HelloWorld
+
+# Push all Images
 
