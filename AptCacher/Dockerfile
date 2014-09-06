@@ -25,4 +25,4 @@ RUN \
     DEBIAN_FRONTEND=noninteractive apt-get install -y apt-cacher-ng
 
 EXPOSE      3142
-CMD ["/usr/sbin/apt-cacher-ng", "ForeGround=1", "FreshIndexMaxAge=604800"]
+CMD /etc/init.d/apt-cacher-ng start && tail -f /var/log/apt-cacher-ng/*

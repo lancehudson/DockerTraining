@@ -26,16 +26,15 @@ cp Files/issue-standard /etc/issue-standard
 cp Files/rc.local /etc/rc.local
 chmod +x /etc/rc.local
 
-# Build Docker Images
+# Build AptCacher Images
 docker build -t apt-cacher-ng AptCacher
-docker build -t npm-lazy NPMLazy
 
 # Install Apt-Cacher-ng - 172.17.42.1:3142
-echo 'Acquire::http { Proxy "172.17.42.1:3142"; };' >> /etc/apt/apt.conf.d/01proxy
+echo 'Acquire::http::Proxy "http://172.17.42.1:3142";' >> /etc/apt/apt.conf.d/01proxy
 docker run -d -p 3142:3142 --name apt-cacher-ng-run apt-cacher-ng
 
-# Update Apt-Cacher cache
-apt-get update
+# Build Docker Images
+docker build -t npm-lazy NPMLazy
 
 # Install NPM Lazy
 
