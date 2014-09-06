@@ -8,6 +8,8 @@
 FROM        ubuntu:14.04
 MAINTAINER  lance@lancehudson.com
 
+RUN echo 'Acquire::http { Proxy "172.17.42.1:3142"; };' >> /etc/apt/apt.conf.d/01proxy
+
 # Update Ubuntu
 RUN \
     apt-get update && \
@@ -22,7 +24,7 @@ RUN \
 
 # Install NPM Lazy
 RUN \	
-    npm install -y npm_lazy
+    npm install -g npm_lazy
 
 WORKDIR /tmp
 USER nobody

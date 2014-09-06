@@ -1,0 +1,4 @@
+#!/bin/sh -e
+docker start apt-cacher-ng-run
+
+exit 0
