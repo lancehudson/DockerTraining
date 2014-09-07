@@ -37,7 +37,7 @@ docker run -d -p 3142:3142 --name apt-cacher-ng-run apt-cacher-ng
 apt-get upgrade
 
 # Pull down submodules
-git submodule init
+git submodule update --init
 
 # Build NPM Lazy Image
 docker build -t npm-lazy NPMLazy
@@ -54,10 +54,16 @@ docker run -d --name gitlab-run -p 10022:22 -p 10080:80 -e 'GITLAB_PORT=10080' -
 # Clone required github repositories
 
 # Build Registry
-docker build -t registry Registry
+#docker build -t registry Registry
 
 # Install Registry
 docker run -d -p 5000:5000 --name registry-run registry
+
+# Build System Proxy
+docker build -t proxy Proxy
+
+# Install Proxy
+docker run -d --name proxy-run -p 443:443 -p 80:80 proxy
 
 # Build Example Images
 docker build -t helloworld HelloWorld

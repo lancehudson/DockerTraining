@@ -4,6 +4,3 @@
 [submodule "Gitlab"]
 	path = Gitlab
 	url = https://github.com/sameersbn/docker-gitlab.git
-[submodule "Registry"]
-	path = Registry
-	url = https://github.com/docker/docker-registry
