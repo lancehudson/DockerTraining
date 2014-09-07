@@ -12,7 +12,7 @@ server.on('query', function(query) {
 
   console.log('DNS Query: (%s) %s', type, domain);
 
-  swtich(type) {
+  switch(type) {
   	case 'A':
   		query.addAnswer(domain, new named.ARecord('127.0.0.1'), 300);
   		break;

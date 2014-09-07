@@ -65,8 +65,25 @@ docker build -t proxy Proxy
 # Install Proxy
 docker run -d -p 443:443 -p 80:80 --link gitlab-run:gitlab --link registry-run:registry --name proxy-run proxy
 
+# Build Captive DNS
+docker build -r dns Dns
+
+# Install Captive DNS
+docker run -d -p 53:9999/udp --name dns-run dns
+
 # Build Example Images
 docker build -t helloworld HelloWorld
 
 # Push all Images
 
+# Sandbox Container's DNS
+echo "" >> /etc/default/docker
+service docker restart
+
+# Start containers
+docker start dns-run
+docker start npm-lazy-run
+docker start registry-run
+docker start gitlab-run
+docker start apt-cacher-ng-run
+docker start proxy-run
