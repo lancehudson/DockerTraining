@@ -145,3 +145,19 @@ body {
  *********************************************/
 .reveal .slide-number {
   color: #13daec; }
+
+.reveal .footer {
+  position: absolute;
+  bottom: 1em;
+  left: 1em;
+  width: 100%;
+  font-size: 0.5em; }
+  .reveal .footer .logo {
+    height: 100px;
+    margin-right: 25px; }
+  .reveal .footer .right {
+    position: absolute;
+    right: 150px;
+    bottom: 0;
+    text-align: right;
+    width: 100%; }
