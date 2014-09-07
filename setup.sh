@@ -63,7 +63,7 @@ docker run -d -p 5000:5000 --name registry-run registry
 docker build -t proxy Proxy
 
 # Install Proxy
-docker run -d --name proxy-run -p 443:443 -p 80:80 proxy
+docker run -d -p 443:443 -p 80:80 --link gitlab-run:gitlab --link registry-run:registry --name proxy-run proxy
 
 # Build Example Images
 docker build -t helloworld HelloWorld
