@@ -1,0 +1,16 @@
+{
+  "name": "CaptiveDNS",
+  "version": "1.0.0",
+  "private": true,
+  "author": "Lance Hudson <lance@lancehudson.com> (http://lancehudson.com/)",
+  "description": "A simple dns node application for playing with docker", 
+  "main": "./server.js",    
+  "noAnalyze": true,
+  "license": "Unlicense",
+  "engines": {
+    "node": ">=0.6.14"
+  },
+  "dependencies": {
+    "node-named": "*"
+  }
+}
