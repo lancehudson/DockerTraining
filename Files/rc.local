@@ -1,4 +1,9 @@
 #!/bin/sh -e
+docker start dns-run
+docker start npm-lazy-run
+docker start registry-run
+docker start gitlab-run
 docker start apt-cacher-ng-run
+docker start proxy-run
 
 exit 0

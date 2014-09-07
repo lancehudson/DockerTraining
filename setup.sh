@@ -34,7 +34,7 @@ echo 'Acquire::http::Proxy "http://172.17.42.1:3142";' >> /etc/apt/apt.conf.d/01
 docker run -d -p 3142:3142 --name apt-cacher-ng-run apt-cacher-ng
 
 # Update base
-apt-get upgrade
+apt-get dist-upgrade -y
 
 # Pull down submodules
 git submodule update --init
@@ -52,6 +52,18 @@ docker build -t gitlab Gitlab
 docker run -d --name gitlab-run -p 10022:22 -p 10080:80 -e 'GITLAB_PORT=10080' -e 'GITLAB_SSH_PORT=10022' gitlab
 
 # Clone required github repositories
+## Update Gitlab password
+### Get Gitlab Token
+export GITLAB_TOKEN=$(expr "$(curl --silent -X POST -H "Accept:application/json" -H "Cache-Control:no-cache" http://192.168.5.118:10080/api/v3/session?login=root\&password=5iveL\!fe)" : '.*"private_token":"\([^"]*\)"')
+### Change Password
+curl -X PUT -H "Accept:application/json" -H "PRIVATE-TOKEN:$GITLAB_TOKEN" -H "Content-Type:application/json" -H "Cache-Control:no-cache" -d '{"password": "dockertraining"}' http://192.168.5.118:10080/api/v3/users/1
+## Create LanceHudson group
+curl -X POST -H "Accept:application/json" -H "PRIVATE-TOKEN:$GITLAB_TOKEN" -H "Content-Type:application/json" -H "Cache-Control:no-cache" -d '{"name":"LanceHudson","path":"lancehudson"}' http://192.168.5.118:10080/api/v3/groups
+## Add root to LanceHudson group
+curl -X POST -H "Accept:application/json" -H "PRIVATE-TOKEN:$GITLAB_TOKEN" -H "Content-Type:application/json" -H "Cache-Control:no-cache" -d '{"user_id":1,"access_level":"50"}' http://192.168.5.118:10080/api/v3/groups/2/members
+## Create Projects
+curl -X POST -H "Accept:application/json" -H "PRIVATE-TOKEN:$GITLAB_TOKEN" -H "Content-Type:application/json" -H "Cache-Control:no-cache" -d '{"name":"HelloWorld","namespace_id":2,"public":true, "description":""A simple hello world node application for playing with docker", import_url": "https://github.com/lancehudson/HelloWorld.git"}' http://192.168.5.118:10080/api/v3/projects
+curl -X POST -H "Accept:application/json" -H "PRIVATE-TOKEN:$GITLAB_TOKEN" -H "Content-Type:application/json" -H "Cache-Control:no-cache" -d '{"name":"DockerTraining","namespace_id":2,"public":true, "description":"Docker Training for Fossetcon 2014 Orlando, FL", "import_url": "https://github.com/lancehudson/DockerTraining.git"}' http://192.168.5.118:10080/api/v3/projects
 
 # Build Registry
 #docker build -t registry Registry
@@ -66,7 +78,7 @@ docker build -t proxy Proxy
 docker run -d -p 443:443 -p 80:80 --link gitlab-run:gitlab --link registry-run:registry --name proxy-run proxy
 
 # Build Captive DNS
-docker build -r dns Dns
+docker build -t dns Dns
 
 # Install Captive DNS
 docker run -d -p 53:9999/udp --name dns-run dns
@@ -77,8 +89,9 @@ docker build -t helloworld HelloWorld
 # Push all Images
 
 # Sandbox Container's DNS
-echo "" >> /etc/default/docker
+echo "DOCKER_OPTS=\"--dns 127.0.0.1\"" >> /etc/default/docker
 service docker restart
+sleep 5
 
 # Start containers
 docker start dns-run
