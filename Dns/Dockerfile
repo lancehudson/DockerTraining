@@ -19,6 +19,9 @@ RUN \
 # Add application
 ADD . /usr/src/app
 WORKDIR /usr/src/app
+
+RUN npm --registry http://172.17.42.1:8080/ install
+
 USER nobody
 
 EXPOSE 8080
