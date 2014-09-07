@@ -30,7 +30,7 @@ chmod +x /etc/rc.local
 docker build -t apt-cacher-ng AptCacher
 
 # Install Apt-Cacher-ng - 172.17.42.1:3142
-echo 'Acquire::http::Proxy "http://172.17.42.1:3142";' >> /etc/apt/apt.conf.d/01proxy
+echo 'Acquire::http::Proxy "http://172.17.42.1:3142";' | tee -a /etc/apt/apt.conf.d/01proxy
 docker run -d -p 3142:3142 --name apt-cacher-ng-run apt-cacher-ng
 
 # Update base
@@ -44,12 +44,14 @@ docker build -t npm-lazy NPMLazy
 
 # Install NPM Lazy
 docker run -d -p 8080:8080 --name npm-lazy-run npm-lazy
-
+ 
 # Build Gitlab
 docker build -t gitlab Gitlab
 
 # Install Gitlab
 docker run -d --name gitlab-run -p 10022:22 -p 10080:80 -e 'GITLAB_PORT=10080' -e 'GITLAB_SSH_PORT=10022' gitlab
+
+sleep 600
 
 # Clone required github repositories
 ## Update Gitlab password
@@ -62,8 +64,8 @@ curl -X POST -H "Accept:application/json" -H "PRIVATE-TOKEN:$GITLAB_TOKEN" -H "C
 ## Add root to LanceHudson group
 curl -X POST -H "Accept:application/json" -H "PRIVATE-TOKEN:$GITLAB_TOKEN" -H "Content-Type:application/json" -H "Cache-Control:no-cache" -d '{"user_id":1,"access_level":"50"}' http://192.168.5.118:10080/api/v3/groups/2/members
 ## Create Projects
-curl -X POST -H "Accept:application/json" -H "PRIVATE-TOKEN:$GITLAB_TOKEN" -H "Content-Type:application/json" -H "Cache-Control:no-cache" -d '{"name":"HelloWorld","namespace_id":2,"public":true, "description":""A simple hello world node application for playing with docker", import_url": "https://github.com/lancehudson/HelloWorld.git"}' http://192.168.5.118:10080/api/v3/projects
-curl -X POST -H "Accept:application/json" -H "PRIVATE-TOKEN:$GITLAB_TOKEN" -H "Content-Type:application/json" -H "Cache-Control:no-cache" -d '{"name":"DockerTraining","namespace_id":2,"public":true, "description":"Docker Training for Fossetcon 2014 Orlando, FL", "import_url": "https://github.com/lancehudson/DockerTraining.git"}' http://192.168.5.118:10080/api/v3/projects
+curl -X POST -H "Accept:application/json" -H "PRIVATE-TOKEN:$GITLAB_TOKEN" -H "Content-Type:application/json" -H "Cache-Control:no-cache" -d '{"name":"HelloWorld", "path": "HelloWorld", "namespace_id":2,"public":true, "description":"A simple hello world node application for playing with docker", import_url": "https://github.com/lancehudson/HelloWorld.git"}' http://192.168.5.118:10080/api/v3/projects
+curl -X POST -H "Accept:application/json" -H "PRIVATE-TOKEN:$GITLAB_TOKEN" -H "Content-Type:application/json" -H "Cache-Control:no-cache" -d '{"name":"DockerTraining","path": "DockerTraining", "namespace_id":2,"public":true, "description":"Docker Training for Fossetcon 2014 Orlando, FL", "import_url": "https://github.com/lancehudson/DockerTraining.git"}' http://192.168.5.118:10080/api/v3/projects
 
 # Build Registry
 #docker build -t registry Registry
@@ -71,10 +73,15 @@ curl -X POST -H "Accept:application/json" -H "PRIVATE-TOKEN:$GITLAB_TOKEN" -H "C
 # Install Registry
 docker run -d -p 5000:5000 --name registry-run registry
 
-# Build System Proxy
+# Build System 
+apt-get install -y ssl-cert
+cp /etc/ssl/certs/ssl-cert-snakeoil.pem Proxy/ssl-cert-snakeoil.pem
+cp /etc/ssl/private/ssl-cert-snakeoil.key Proxy/ssl-cert-snakeoil.key
 docker build -t proxy Proxy
 
 # Install Proxy
+cp /etc/ssl/certs/ssl-cert-snakeoil.pem /usr/local/share/ca-certificates/ssl-cert-snakeoil.crt
+dpkg-reconfigure -fnoninteractive ca-certificates
 docker run -d -p 443:443 -p 80:80 --link gitlab-run:gitlab --link registry-run:registry --name proxy-run proxy
 
 # Build Captive DNS
@@ -89,7 +96,8 @@ docker build -t helloworld HelloWorld
 # Push all Images
 
 # Sandbox Container's DNS
-echo "DOCKER_OPTS=\"--dns 127.0.0.1\"" >> /etc/default/docker
+echo "DOCKER_OPTS=\"--dns 127.0.0.1\"" | tee -a /etc/default/docker
+echo "127.0.0.1 github.com www.github.com index.docker.io" | tee -a /etc/hosts
 service docker restart
 sleep 5
 

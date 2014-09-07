@@ -19,7 +19,10 @@ RUN \
 # Install nginx
 RUN \
     apt-get update && \
-    DEBIAN_FRONTEND=noninteractive apt-get install -y nginx ssl-cert
+    DEBIAN_FRONTEND=noninteractive apt-get install -y nginx
+
+ADD ssl-cert-snakeoil.pem /etc/ssl/certs/ssl-cert-snakeoil.pem
+ADD ssl-cert-snakeoil.key /etc/ssl/private/ssl-cert-snakeoil.key
 
 ADD nginx.conf /etc/nginx/nginx.conf
 
