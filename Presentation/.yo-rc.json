@@ -1,0 +1,10 @@
+{
+  "generator-reveal": {
+    "presentationTitle": "Docker and why you should be using it",
+    "packageVersion": "1.0.0",
+    "useSass": true,
+    "deployToGithubPages": true,
+    "githubUsername": "lancehudson",
+    "githubRepository": "DockerTraining"
+  }
+}
