@@ -54,6 +54,8 @@ This container acts as a cache and proxy for NPM.
 
 This is a git server that I have setup to pretend to be github so that docker builds from github would work.
 
+The admin user is root and the password is dockertraining
+
 ## Docker Registry
 
 This is a private docker registry that contains an image of each of the examples and the supporting containers. I configured it to pretend to be the public docker registry hub.docker.io.
