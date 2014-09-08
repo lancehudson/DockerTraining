@@ -31,5 +31,30 @@
         "hello-world-build.md",
         "hello-world-more.md"
     ],
-    "5-minute-break.md"
+    "5-minute-break.md",
+    [
+        "php-application.md",
+        "php-application-dockerfile.md",
+        "php-application-build.md",
+        "php-application-more.md"
+    ],
+    [
+        "management.md",
+        "management-agent.md",
+        "management-shipyard.md"
+    ],
+    "5-minute-break.md",
+    [
+        "scenario.md",
+        "scenario-backend.md",
+        "scenario-frontend.md",
+        "scenario-load-balancer.md",
+        "scenario-put-it-together.md"
+    ],
+    "scenario-2.md",
+    "scenario-2-agent.md",
+    "scenario-2-ambassador.md",
+    "scenario-2-load-balancer.md",
+    "scenario-2-test.md",
+    "resources.md"
 ]
