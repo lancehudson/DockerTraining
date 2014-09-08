@@ -1,5 +1,8 @@
 [
-    "index.md",
+    [
+        "index.md",
+        "alt-setup.md"
+    ],
     [
         "hello.md",
         "hacker.md"
@@ -7,5 +10,26 @@
     "poll.md",
     "what-we-will-cover.md",
     "ask-questions.md",
-    ["setup.md",     "setup-2.md"]
+    [
+        "setup.md",
+        "setup-2.md"
+    ],
+    [
+        "overview.md",
+        "overview-2.md",
+        "overview-3.md"
+    ],
+    [
+        "how-does-docker-work.md",
+        "lxc.md",
+        "aufs.md"
+    ],
+    "examples.md",
+    [
+        "hello-world.md",
+        "hello-world-dockerfile.md",
+        "hello-world-build.md",
+        "hello-world-more.md"
+    ],
+    "5-minute-break.md"
 ]
