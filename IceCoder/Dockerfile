@@ -19,11 +19,13 @@ RUN \
 ENV APACHE_RUN_USER www-data
 ENV APACHE_RUN_GROUP www-data
 ENV APACHE_LOG_DIR /var/log/apache2
+ENV APACHE_LOCK_DIR /tmp
 
 # Add application
-ADD ICEcoder-4.1.tar.gz /var/www
-RUN chown www-data -R /var/www/lib /var/www/backups /var/www/test 
-RUN mkdir /var/www/projects && chown -R www-data /var/www/projects && chmod g+s /var/www/projects
+ADD ICEcoder-4.1.tar.gz /var/www/html
+RUN rm /var/www/html/index.html
+RUN chown www-data -R /var/www/html/lib /var/www/html/backups /var/www/html/test 
+RUN mkdir /var/www/html/projects && chown -R www-data /var/www/html/projects && chmod g+s /var/www/html/projects
 
 EXPOSE 80
 CMD ["/usr/sbin/apache2", "-D", "FOREGROUND"] 
