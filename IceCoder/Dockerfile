@@ -15,12 +15,6 @@ RUN \
     DEBIAN_FRONTEND=noninteractive apt-get install -y \
     apache2 php5 libapache2-mod-php5
 
-# Configure Apache
-ENV APACHE_RUN_USER www-data
-ENV APACHE_RUN_GROUP www-data
-ENV APACHE_LOG_DIR /var/log/apache2
-ENV APACHE_LOCK_DIR /tmp
-
 # Add application
 ADD ICEcoder-4.1.tar.gz /var/www/html
 RUN sed -i 's/include/incluge/g' /var/www/html/index.php
@@ -29,4 +23,4 @@ RUN chown www-data -R /var/www/html/lib /var/www/html/backups /var/www/html/test
 RUN mkdir /var/www/html/projects && chown -R www-data /var/www/html/projects && chmod g+s /var/www/html/projects
 
 EXPOSE 80
-CMD ["/usr/sbin/apache2", "-D", "FOREGROUND"] 
+CMD /etc/init.d/apaceh2 start && tail -f /var/log/apache2/*.log
