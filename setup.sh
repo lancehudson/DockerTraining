@@ -98,13 +98,6 @@ docker build -t helloworld HelloWorld
 # Sandbox Container's DNS
 echo "DOCKER_OPTS=\"--dns 127.0.0.1\"" | tee -a /etc/default/docker
 echo "127.0.0.1 github.com www.github.com index.docker.io" | tee -a /etc/hosts
-service docker restart
-sleep 5
 
-# Start containers
-docker start dns-run
-docker start npm-lazy-run
-docker start registry-run
-docker start gitlab-run
-docker start apt-cacher-ng-run
-docker start proxy-run
+# Reboot
+reboot
