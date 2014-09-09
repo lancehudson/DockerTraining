@@ -22,4 +22,4 @@ RUN rm /var/www/html/index.html
 RUN chown www-data -R /var/www/html
 
 EXPOSE 80
-CMD /etc/init.d/apaceh2 start && tail -f /var/log/apache2/*.log /var/www/html/php_errors.log
+CMD /etc/init.d/apache2 start && tail -f /var/log/apache2/*.log /var/www/html/php_errors.log
