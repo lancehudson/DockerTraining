@@ -19,8 +19,7 @@ RUN \
 ADD ICEcoder-4.1.tar.gz /var/www/html
 RUN sed -i 's/include/incluge/g' /var/www/html/index.php
 RUN rm /var/www/html/index.html
-RUN chown www-data -R /var/www/html/lib /var/www/html/backups /var/www/html/test 
-RUN mkdir /var/www/html/projects && chown -R www-data /var/www/html/projects && chmod g+s /var/www/html/projects
+RUN chown www-data -R /var/www/html
 
 EXPOSE 80
-CMD /etc/init.d/apaceh2 start && tail -f /var/log/apache2/*.log
+CMD /etc/init.d/apaceh2 start && tail -f /var/log/apache2/*.log /var/www/html/php_errors.log
