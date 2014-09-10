@@ -20,7 +20,7 @@ RUN \
 RUN \
     DEBIAN_FRONTEND=noninteractive add-apt-repository ppa:chris-lea/node.js && \
     apt-get update && \
-    DEBIAN_FRONTEND=noninteractive apt-get install -y nodejs
+    DEBIAN_FRONTEND=noninteractive apt-get install -y nodejs git
 
 # Add presentation
 ADD . /usr/src/app
