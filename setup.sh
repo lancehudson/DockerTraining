@@ -101,6 +101,10 @@ docker build -t client Todo_dockerfiles/Client
 docker build -t service Todo_dockerfiles/Service
 docker build -t loadbalancer Todo_dockerfiles/Loadbalancer
 
+# Install slides
+docker build -t presentation .
+docker run -d -p 9000:9000 --name presentation-run presentation
+
 # Sandbox Container's DNS
 echo "DOCKER_OPTS=\"--dns 127.0.0.1\"" | tee -a /etc/default/docker
 echo "127.0.0.1 github.com www.github.com index.docker.io" | tee -a /etc/hosts

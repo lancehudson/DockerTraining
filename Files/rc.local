@@ -6,5 +6,6 @@ docker start registry-run
 docker start gitlab-run
 docker start apt-cacher-ng-run
 docker start proxy-run
+docker start presentation-run
 
 exit 0
