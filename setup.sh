@@ -92,6 +92,7 @@ docker run -d -p 53:9999/udp --name dns-run dns
 
 # Build Example Images
 docker build -t helloworld HelloWorld
+docker build -t icecoder IceCoder
 
 # Push all Images
 

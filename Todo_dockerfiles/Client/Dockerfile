@@ -10,16 +10,17 @@ RUN \
     DEBIAN_FRONTEND=noninteractive apt-get upgrade -y && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y software-properties-common
 
-# Install Apache & PHP
-RUN \
-    DEBIAN_FRONTEND=noninteractive apt-get install -y \
-    apache2 php5 libapache2-mod-php5
+# Install Nginx
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y nginx
 
 # Add application
-ADD ICEcoder-4.1.tar.gz /var/www/html
-RUN sed -i 's/include/incluge/g' /var/www/html/index.php
-RUN rm /var/www/html/index.html
-RUN chown www-data -R /var/www/html
+ADD client /usr/src/app
+ADD bower.json /usr/src/app
+WORKDIR /usr/src/app
+
+RUN bower --registry http://172.17.42.1:8080/ install
+
+ADD nginx.conf /etc/nginx/nginx.conf
 
 EXPOSE 80
-CMD /etc/init.d/apache2 start && tail -f /var/log/apache2/*.log
+CMD service nginx start

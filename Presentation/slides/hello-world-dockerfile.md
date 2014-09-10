@@ -14,7 +14,8 @@
         DEBIAN_FRONTEND=noninteractive apt-get upgrade -y && \
         DEBIAN_FRONTEND=noninteractive apt-get install -y \
         software-properties-common
-<!-- -->
+<!-- .element: class="bash" -->
+
     # Install NodeJS
     RUN \
         DEBIAN_FRONTEND=noninteractive add-apt-repository \
@@ -29,6 +30,7 @@
 
     EXPOSE 8080
     CMD ["node", "server.js"]
+<!-- .element: class="bash" -->
 
 note:
 

@@ -4,3 +4,6 @@
 [submodule "Gitlab"]
 	path = Gitlab
 	url = https://github.com/sameersbn/docker-gitlab.git
+[submodule "Todo"]
+	path = Todo
+	url = https://github.com/lancehudson/loopback-example-todo

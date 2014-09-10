@@ -1,7 +1,4 @@
 ##  Scenario
 
-This is a new Markdown slide
+You want to deploy a 3 tier application with the front end and rest services in docker containers.
 
-note:
-    Put your speaker notes here.
-    You can see them pressing 's'.

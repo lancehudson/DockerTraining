@@ -1,7 +1,9 @@
 ##  Management - Shipyard
 
-This is a new Markdown slide
+http://vmip:8000
 
-note:
-    Put your speaker notes here.
-    You can see them pressing 's'.
+Login as `admin` with the password `shipyard`
+
+Goto hosts and authorize the host listed.
+
+Now you should have the ability to manage all of the docker images and containers.

@@ -10,16 +10,19 @@ RUN \
     DEBIAN_FRONTEND=noninteractive apt-get upgrade -y && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y software-properties-common
 
-# Install Apache & PHP
+# Install NodeJS
 RUN \
-    DEBIAN_FRONTEND=noninteractive apt-get install -y \
-    apache2 php5 libapache2-mod-php5
+    DEBIAN_FRONTEND=noninteractive add-apt-repository ppa:chris-lea/node.js && \
+    apt-get update && \
+    DEBIAN_FRONTEND=noninteractive apt-get install -y nodejs
 
 # Add application
-ADD ICEcoder-4.1.tar.gz /var/www/html
-RUN sed -i 's/include/incluge/g' /var/www/html/index.php
-RUN rm /var/www/html/index.html
-RUN chown www-data -R /var/www/html
+ADD . /usr/src/app
+WORKDIR /usr/src/app
 
-EXPOSE 80
-CMD /etc/init.d/apache2 start && tail -f /var/log/apache2/*.log
+RUN npm --registry http://172.17.42.1:8080/ install
+
+USER nobody
+
+EXPOSE 8000
+CMD ["node", "."]
