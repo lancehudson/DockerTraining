@@ -94,15 +94,15 @@ docker run -d -p 53:9999/udp --name dns-run dns
 docker build -t helloworld HelloWorld
 docker build -t icecoder IceCoder
 cp Todo/* Todo_dockerfiles/Client/ -r
-cp Todo/.* Todo_dockerfiles/Client/ -r
+cp Todo/.bowerrc Todo_dockerfiles/Client/ -r
 cp Todo/* Todo_dockerfiles/Service/ -r
-cp Todo/.* Todo_dockerfiles/Service/ -r
+cp Todo/.bowerrc Todo_dockerfiles/Service/ -r
 docker build -t client Todo_dockerfiles/Client
 docker build -t service Todo_dockerfiles/Service
 docker build -t loadbalancer Todo_dockerfiles/Loadbalancer
 
 # Install slides
-docker build -t presentation .
+docker build -t presentation Presentation
 docker run -d -p 9000:9000 --name presentation-run presentation
 
 # Sandbox Container's DNS
