@@ -1,4 +1,5 @@
 #!/bin/sh -e
+sleep 600
 docker start dns-run
 docker start npm-lazy-run
 docker start registry-run

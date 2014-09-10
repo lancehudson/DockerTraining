@@ -93,12 +93,20 @@ docker run -d -p 53:9999/udp --name dns-run dns
 # Build Example Images
 docker build -t helloworld HelloWorld
 docker build -t icecoder IceCoder
-
-# Push all Images
+cp Todo/* Todo_dockerfiles/Client/ -r
+cp Todo/.* Todo_dockerfiles/Client/ -r
+cp Todo/* Todo_dockerfiles/Service/ -r
+cp Todo/.* Todo_dockerfiles/Service/ -r
+docker build -t client Todo_dockerfiles/Client
+docker build -t service Todo_dockerfiles/Service
+docker build -t loadbalancer Todo_dockerfiles/Loadbalancer
 
 # Sandbox Container's DNS
 echo "DOCKER_OPTS=\"--dns 127.0.0.1\"" | tee -a /etc/default/docker
 echo "127.0.0.1 github.com www.github.com index.docker.io" | tee -a /etc/hosts
+
+# Push all Images
+docker push *
 
 # Reboot
 reboot
