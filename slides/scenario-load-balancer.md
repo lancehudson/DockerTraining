@@ -1,7 +1,10 @@
-##  Scenario - load balancer
+##  Scenario - Load Balancer
 
-This is a new Markdown slide
+First lets create the Load Balancer Dockerfile
 
 note:
-    Put your speaker notes here.
-    You can see them pressing 's'.
+answer in Todo_dockerfiles dir
+
+    create a dir scenario
+    create a dir scenario/Load Balancer
+    cd into scenario/Load Balancer

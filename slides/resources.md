@@ -1,7 +1,5 @@
 ##  Resources
 
-This is a new Markdown slide
-
-note:
-    Put your speaker notes here.
-    You can see them pressing 's'.
+* cli - https://docs.docker.com/reference/commandline/cli/
+* dockerfile - https://docs.docker.com/reference/builder/
+* https://stackoverflow.com/questions/tagged/docker

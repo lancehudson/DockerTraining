@@ -1,6 +1,7 @@
 ##  Hello World
 
     docker run -d -p 1337:8080 helloworld
+<!-- .element: class="bash" -->
 
 ### What Happened <!-- .element: class="fragment" data-fragment-index="1" -->
 

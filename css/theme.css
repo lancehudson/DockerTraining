@@ -161,3 +161,7 @@ body {
     bottom: 0;
     text-align: right;
     width: 100%; }
+
+@media (max-width: 800px) {
+  .reveal .footer {
+    display: none; } }

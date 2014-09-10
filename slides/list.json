@@ -34,6 +34,7 @@
     "5-minute-break.md",
     [
         "php-application.md",
+        "php-application-debug.md",
         "php-application-dockerfile.md",
         "php-application-build.md",
         "php-application-more.md"
@@ -44,17 +45,24 @@
         "management-shipyard.md"
     ],
     "5-minute-break.md",
+    "scenario.md",
     [
-        "scenario.md",
         "scenario-backend.md",
-        "scenario-frontend.md",
-        "scenario-load-balancer.md",
-        "scenario-put-it-together.md"
+        "scenario-backend-dockerfile.md",
+        "scenario-backend-build.md"
     ],
-    "scenario-2.md",
-    "scenario-2-agent.md",
-    "scenario-2-ambassador.md",
-    "scenario-2-load-balancer.md",
-    "scenario-2-test.md",
+    [
+        "scenario-frontend.md",
+        "scenario-frontend-dockerfile.md",
+        "scenario-frontend-nginx.md",
+        "scenario-frontend-build.md"
+    ],
+    [
+        "scenario-load-balancer.md",
+        "scenario-load-balancer-dockerfile.md",
+        "scenario-load-balancer-nginx.md",
+        "scenario-load-balancer-nginx2.md",
+        "scenario-load-balancer-build.md"
+    ],
     "resources.md"
 ]

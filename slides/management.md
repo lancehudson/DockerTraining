@@ -1,7 +1,7 @@
 ##  Management
 
-This is a new Markdown slide
+Lets install shipyard and shipyard agent <br />
+http://shipyard-project.com/
 
-note:
-    Put your speaker notes here.
-    You can see them pressing 's'.
+    docker run -i -t -v /var/run/docker.sock:/docker.sock shipyard/deploy setup
+<!-- .element: class="bash" -->

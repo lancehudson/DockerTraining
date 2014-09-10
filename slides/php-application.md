@@ -1,7 +1,11 @@
 ##  PHP Application
 
-This is a new Markdown slide
+    docker run -d -p 1337:80 --name icecoder-run icecoder
+<!-- .element: class="bash" -->
 
 note:
-    Put your speaker notes here.
-    You can see them pressing 's'.
+--name
+
+SSH in
+run container
+goto http://ip-of-host:1337/
