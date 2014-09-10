@@ -110,7 +110,36 @@ echo "DOCKER_OPTS=\"--dns 127.0.0.1\"" | tee -a /etc/default/docker
 echo "127.0.0.1 github.com www.github.com index.docker.io" | tee -a /etc/hosts
 
 # Push all Images
-docker push *
+docker tag presentation localhost:5000/presentation
+docker push localhost:5000/presentation
+docker tag loadbalancer localhost:5000/loadbalancer
+docker push localhost:5000/loadbalancer
+docker tag service localhost:5000/service
+docker push localhost:5000/service
+docker tag client localhost:5000/client
+docker push localhost:5000/client
+docker tag icecoder localhost:5000/icecoder
+docker push localhost:5000/icecoder
+docker tag helloworld localhost:5000/helloworld
+docker push localhost:5000/helloworld
+docker tag dns localhost:5000/dns
+docker push localhost:5000/dns
+docker tag proxy localhost:5000/proxy
+docker push localhost:5000/proxy
+docker tag gitlab localhost:5000/gitlab
+docker push localhost:5000/gitlab
+docker tag npm-lazy localhost:5000/npm-lazy
+docker push localhost:5000/npm-lazy
+docker tag gitlab localhost:5000/gitlab
+docker push localhost:5000/gitlab
+docker tag apt-cacher-ng localhost:5000/apt-cacher-ng
+docker push localhost:5000/apt-cacher-ng
+docker tag ubuntu localhost:5000/ubuntu
+docker push localhost:5000/ubuntu
+docker tag registry localhost:5000/registry
+docker push localhost:5000/registry
+docker tag sameersbn/ubuntu localhost:5000/sameersbn/ubuntu
+docker push localhost:5000/sameersbn/ubuntu
 
 # Reboot
 reboot
