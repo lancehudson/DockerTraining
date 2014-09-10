@@ -56,16 +56,16 @@ sleep 600
 # Clone required github repositories
 ## Update Gitlab password
 ### Get Gitlab Token
-export GITLAB_TOKEN=$(expr "$(curl --silent -X POST -H "Accept:application/json" -H "Cache-Control:no-cache" http://192.168.5.118:10080/api/v3/session?login=root\&password=5iveL\!fe)" : '.*"private_token":"\([^"]*\)"')
+export GITLAB_TOKEN=$(expr "$(curl --silent -X POST -H "Accept:application/json" -H "Cache-Control:no-cache" http://172.17.42.1:10080/api/v3/session?login=root\&password=5iveL\!fe)" : '.*"private_token":"\([^"]*\)"')
 ### Change Password
-curl -X PUT -H "Accept:application/json" -H "PRIVATE-TOKEN:$GITLAB_TOKEN" -H "Content-Type:application/json" -H "Cache-Control:no-cache" -d '{"password": "dockertraining"}' http://192.168.5.118:10080/api/v3/users/1
+curl -X PUT -H "Accept:application/json" -H "PRIVATE-TOKEN:$GITLAB_TOKEN" -H "Content-Type:application/json" -H "Cache-Control:no-cache" -d '{"password": "dockertraining"}' http://172.17.42.1:10080/api/v3/users/1
 ## Create LanceHudson group
-curl -X POST -H "Accept:application/json" -H "PRIVATE-TOKEN:$GITLAB_TOKEN" -H "Content-Type:application/json" -H "Cache-Control:no-cache" -d '{"name":"LanceHudson","path":"lancehudson"}' http://192.168.5.118:10080/api/v3/groups
+curl -X POST -H "Accept:application/json" -H "PRIVATE-TOKEN:$GITLAB_TOKEN" -H "Content-Type:application/json" -H "Cache-Control:no-cache" -d '{"name":"LanceHudson","path":"lancehudson"}' http://172.17.42.1:10080/api/v3/groups
 ## Add root to LanceHudson group
-curl -X POST -H "Accept:application/json" -H "PRIVATE-TOKEN:$GITLAB_TOKEN" -H "Content-Type:application/json" -H "Cache-Control:no-cache" -d '{"user_id":1,"access_level":"50"}' http://192.168.5.118:10080/api/v3/groups/2/members
+curl -X POST -H "Accept:application/json" -H "PRIVATE-TOKEN:$GITLAB_TOKEN" -H "Content-Type:application/json" -H "Cache-Control:no-cache" -d '{"user_id":1,"access_level":"50"}' http://172.17.42.1:10080/api/v3/groups/2/members
 ## Create Projects
-curl -X POST -H "Accept:application/json" -H "PRIVATE-TOKEN:$GITLAB_TOKEN" -H "Content-Type:application/json" -H "Cache-Control:no-cache" -d '{"name":"HelloWorld", "path": "HelloWorld", "namespace_id":2,"public":true, "description":"A simple hello world node application for playing with docker", import_url": "https://github.com/lancehudson/HelloWorld.git"}' http://192.168.5.118:10080/api/v3/projects
-curl -X POST -H "Accept:application/json" -H "PRIVATE-TOKEN:$GITLAB_TOKEN" -H "Content-Type:application/json" -H "Cache-Control:no-cache" -d '{"name":"DockerTraining","path": "DockerTraining", "namespace_id":2,"public":true, "description":"Docker Training for Fossetcon 2014 Orlando, FL", "import_url": "https://github.com/lancehudson/DockerTraining.git"}' http://192.168.5.118:10080/api/v3/projects
+curl -X POST -H "Accept:application/json" -H "PRIVATE-TOKEN:$GITLAB_TOKEN" -H "Content-Type:application/json" -H "Cache-Control:no-cache" -d '{"name":"HelloWorld", "path": "HelloWorld", "namespace_id":2,"public":true, "description":"A simple hello world node application for playing with docker", import_url": "https://github.com/lancehudson/HelloWorld.git"}' http://172.17.42.1:10080/api/v3/projects
+curl -X POST -H "Accept:application/json" -H "PRIVATE-TOKEN:$GITLAB_TOKEN" -H "Content-Type:application/json" -H "Cache-Control:no-cache" -d '{"name":"DockerTraining","path": "DockerTraining", "namespace_id":2,"public":true, "description":"Docker Training for Fossetcon 2014 Orlando, FL", "import_url": "https://github.com/lancehudson/DockerTraining.git"}' http://172.17.42.1:10080/api/v3/projects
 
 # Build Registry
 #docker build -t registry Registry
