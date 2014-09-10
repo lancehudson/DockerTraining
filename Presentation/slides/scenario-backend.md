@@ -1,7 +1,15 @@
-##  Scenario - backend
+##  Scenario - Service
 
-This is a new Markdown slide
+First lets create the service Dockerfile
 
 note:
-    Put your speaker notes here.
-    You can see them pressing 's'.
+answer in Todo_dockerfiles dir
+
+    create a dir scenario
+    create a dir scenario/service
+    cd into scenario/service
+
+copy all todo app files into service dir
+
+    cp ~/DockerTraining/Todo/* ./ -r
+    cp ~/DockerTraining/Todo/.* ./

@@ -15,10 +15,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y nginx
 
 # Add application
 ADD client /usr/src/app
-ADD bower.json /usr/src/app
 WORKDIR /usr/src/app
-
-RUN bower --registry http://172.17.42.1:8080/ install
 
 ADD nginx.conf /etc/nginx/nginx.conf
 

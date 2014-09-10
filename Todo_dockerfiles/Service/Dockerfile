@@ -24,5 +24,5 @@ RUN npm --registry http://172.17.42.1:8080/ install
 
 USER nobody
 
-EXPOSE 8000
+EXPOSE 3000
 CMD ["node", "."]
