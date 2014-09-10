@@ -30,7 +30,7 @@ WORKDIR /usr/src/app
 RUN \
     npm --registry http://172.17.42.1:8080/ install -g bower grunt-cli && \
     npm --registry http://172.17.42.1:8080/ install && \
-    bower --registry http://172.17.42.1:8080/ --allow-root install
+    bower --allow-root install
 
 USER nobody
 
