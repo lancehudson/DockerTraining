@@ -138,8 +138,6 @@ docker tag ubuntu localhost:5000/ubuntu
 docker push localhost:5000/ubuntu
 docker tag registry localhost:5000/registry
 docker push localhost:5000/registry
-docker tag sameersbn/ubuntu localhost:5000/sameersbn/ubuntu
-docker push localhost:5000/sameersbn/ubuntu
 
 # Reboot
 reboot
