@@ -8,7 +8,7 @@ Lets tag the broken one as 0.1
 
 Lets build the fixed one
 
-    docker build -t icecoder DockerTraining/IceCoder
+    docker build -t icecoder IceCoder
     docker images
 <!-- .element: class="bash" -->
 

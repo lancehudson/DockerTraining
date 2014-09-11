@@ -1,8 +1,6 @@
 [
-    [
+
         "index.md",
-        "alt-setup.md"
-    ],
     [
         "hello.md",
         "hacker.md"
@@ -31,7 +29,6 @@
         "hello-world-build.md",
         "hello-world-more.md"
     ],
-    "5-minute-break.md",
     [
         "php-application.md",
         "php-application-debug.md",

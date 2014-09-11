@@ -3,7 +3,7 @@
 ## and Why you should be using it
 
 Please have VirtualBox installed and download this OVA
-https://github.com/lancehudson/DockerTraining/releases/1.0.0/vm.ova
+http://lhudson.hashbang.sh/vm.ova (or use a dvd)
 
 To follow along with the slides open
 http://lancehudson.com/DockerTraining/
