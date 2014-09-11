@@ -8,8 +8,6 @@
 FROM        ubuntu:14.04
 MAINTAINER  lance@lancehudson.com
 
-RUN echo 'Acquire::http::Proxy "http://172.17.42.1:3142";' >> /etc/apt/apt.conf.d/01proxy
-
 # Update Ubuntu
 RUN \
     apt-get update && \
@@ -28,8 +26,8 @@ WORKDIR /usr/src/app
 
 # Install NPM
 RUN \
-    npm --registry http://172.17.42.1:8080/ install -g bower grunt-cli && \
-    npm --registry http://172.17.42.1:8080/ install && \
+    npm install -g bower grunt-cli && \
+    npm install && \
     bower --allow-root install
 
 USER nobody

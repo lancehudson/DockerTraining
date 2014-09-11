@@ -2,8 +2,6 @@
 FROM ubuntu:14.04
 MAINTAINER Lance Hudson <lance@lancehudson.com> (http://lancehudson.com)
 
-RUN echo 'Acquire::http::Proxy "http://172.17.42.1:3142";' >> /etc/apt/apt.conf.d/01proxy
-
 # Update Ubuntu
 RUN \
     apt-get update && \
@@ -20,7 +18,7 @@ RUN \
 ADD . /usr/src/app
 WORKDIR /usr/src/app
 
-RUN npm --registry http://172.17.42.1:8080/ install
+RUN npm install
 
 USER nobody
 

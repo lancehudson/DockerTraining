@@ -4,10 +4,6 @@
     FROM ubuntu:14.04
     MAINTAINER Lance Hudson <lance@lancehudson.com> (http://lancehudson.com)
 
-    # Add Apt Cacher Proxy
-    RUN echo 'Acquire::http::Proxy "http://172.17.42.1:3142";' | \
-        tee -a /etc/apt/apt.conf.d/01proxy
-
     # Update Ubuntu
     RUN \
         apt-get update && \
